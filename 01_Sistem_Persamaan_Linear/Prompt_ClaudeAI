@@ -1,0 +1,58 @@
+RANGKAIAN PROMPT AI - TUGAS KOMPUTASI NUMERIK (SPL 3 VARIABEL)
+Platform AI : Claude AI
+Catatan     : Prompt dikirim berurutan dalam SATU chat. Hasil tiap tahap dicek dan dijalankan sendiri di Google Colab.
+ 
+=== PROMPT 1 (Prompt utama: algoritma dan kode versi 1) ===
+PERAN
+Kamu adalah asisten dosen Komputasi Numerik yang berpengalaman mengajar mahasiswa S1 Teknik Informatika. Jelaskan dalam bahasa Indonesia yang runtut dan mudah dipahami pemula.
+ 
+KONTEKS
+Saya mahasiswa semester tiga yang mengerjakan tugas menyelesaikan Sistem Persamaan Linear (SPL) 3 variabel (x, y, z). Hasil akan disimpan di repository GitHub "Komputasi Numerik" dan dijalankan di Google Colab (Python 3). Tujuan saya bukan hanya mendapat kode yang jalan, tetapi memahami alasan di balik setiap langkah sehingga bisa menjelaskannya kembali ke dosen.
+ 
+CARA KERJA
+Jangan mengajukan pertanyaan balik. Jika ada hal yang ambigu, tulis asumsimu di awal jawaban lalu lanjutkan. Jika ada bagian yang kamu tidak yakin, katakan terus terang.
+ 
+TUGAS
+Selesaikan SPL 3 variabel dengan Eliminasi Gauss + Pivoting Parsial + Substitusi Mundur, dengan keluaran berikut:
+ 
+1) ALGORITMA
+   - Langkah bernomor dan pseudocode, lengkap dengan input, output, dan kondisi jika tidak ada solusi tunggal.
+   - Satu paragraf singkat: mengapa metode ini dipilih dibanding Cramer dan Gauss-Jordan.
+   - Telusuri manual Kasus 1 (di bawah) tahap demi tahap sebagai bukti algoritma benar.
+ 
+2) KODE PYTHON UNTUK GOOGLE COLAB
+   - Berikan per cell, tulis "CELL 1", "CELL 2", dst. beserta jenisnya (kode/markdown) agar bisa saya salin satu per satu.
+   - Setiap cell kode didahului cell markdown berisi: tujuan cell, rumus yang dipakai, dan output apa yang seharusnya terlihat.
+   - Cell mencakup: import, fungsi penyelesaian (menampilkan matriks setelah tiap tahap eliminasi), fungsi uji/verifikasi, lalu satu cell per uji kasus.
+ 
+BATASAN
+- Hanya NumPy. np.linalg.solve hanya untuk verifikasi, bukan metode utama.
+- Kode harus berjalan tanpa error dari cell pertama sampai terakhir.
+- Tangani pivot nol/sistem singular dengan pesan error yang jelas, bukan crash.
+- Jangan memakai input() pada cell utama agar mudah dijalankan ulang.
+ 
+UJI KASUS (wajib; tampilkan solusi, residual A.x - b, dan np.linalg.cond(A) untuk masing-masing)
+- Kasus 1, normal: 2x + y - z = 8; -3x - y + 2z = -11; -2x + y + 2z = -3 (solusi: 2, 3, -1)
+- Kasus 2, butuh pivoting: elemen diagonal pertama bernilai 0 (buat contoh sendiri dari solusi yang kamu tetapkan)
+- Kasus 3, singular: dua persamaan bergantung linear
+- Kasus 4, hampir singular: A = [[1,1,1],[1,1.0001,1],[1,1,1.0001]] dengan solusi yang kamu tetapkan; lakukan eksperimen menggeser satu nilai b sebesar 0.0001 dan tunjukkan perubahan solusinya
+ 
+FORMAT OUTPUT
+Urutan: Asumsi, 1. Algoritma, 2. Kode per cell, Ringkasan hasil uji (tabel), lalu 3 poin cara menjalankan di Colab.
+ 
+KRITERIA KUALITAS
+- Akurat secara matematis, kode rapi dan konsisten penamaannya, penjelasan cocok untuk mahasiswa semester awal.
+- Sebelum menjawab, periksa bahwa output yang kamu klaim sesuai dengan solusi contoh. Jangan menulis output yang tidak kamu yakini.
+ 
+ 
+=== PROMPT 2 (Review kritis) ===
+Sekarang bertindaklah sebagai reviewer kode yang kritis. Periksa algoritma dan kode di atas: cari bug, kasus tepi yang belum tertangani, dan bagian yang berpotensi menyesatkan mahasiswa. Laporkan temuanmu dalam daftar singkat (masalah, dampak, perbaikan), lalu berikan versi kode yang sudah diperbaiki.
+ 
+ 
+=== PROMPT 3 (Kode versi 2 dengan penjelasan detail) ===
+Ubah kode terakhir menjadi versi 2 yang berisi penjelasan detail: (a) setiap baris kode diberi komentar yang menjelaskan fungsi dan alasannya, (b) setiap cell kode didahului cell markdown berisi tujuan, rumus yang dipakai, dan apa yang harus terlihat pada output. Gunakan analogi sederhana untuk pivoting parsial dan substitusi mundur. Kode dan perilakunya tidak boleh berubah dari versi sebelumnya.
+ 
+ 
+=== PROMPT 4 (Refleksi pemahaman) ===
+Berdasarkan hasil keempat uji kasus tadi, jelaskan dengan bahasa sederhana: (1) mengapa residual yang kecil tidak menjamin solusi akurat pada kasus ill-conditioned, (2) kapan Eliminasi Gauss kurang cocok dibanding metode lain (dekomposisi LU atau metode iteratif Jacobi/Gauss-Seidel) untuk sistem berukuran besar, (3) tiga soal latihan beserta jawabannya untuk menguji pemahaman saya tentang pivoting parsial dan bilangan kondisi.
+ 
